@@ -17,7 +17,6 @@ const fetchNotes = async (
     },
 
   });
-    console.log('Response URL1:', response.config.url);
   return response.data;
 };
 

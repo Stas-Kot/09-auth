@@ -4,7 +4,7 @@ import { checkServerSession } from './lib/api/serverApi';
 import { parse } from 'cookie';
 
 const publicRoutes = ['/sign-in', '/sign-up'];
-const privateRoutes = ['/profile'];
+const privateRoutes = ['/profile', '/notes', '/notes/filter'];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -67,5 +67,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/profile/:path*', '/sign-in', '/sign-up'],
+  matcher: ['/profile/:path*', '/notes/:path*', '/notes/filter/:path*', '/sign-in', '/sign-up'],
 };
