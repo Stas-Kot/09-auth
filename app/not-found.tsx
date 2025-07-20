@@ -2,7 +2,7 @@ import Link from 'next/link';
 import css from './Home.module.css'
 import { Metadata } from 'next';
 
-const baseUrl = new URL('https://08-zustand-vert.vercel.app');
+const baseUrl = new URL('https://09-auth-seven.vercel.app');
 
 export const metadata: Metadata = {
   title: 'Page Not Found | Notes App',

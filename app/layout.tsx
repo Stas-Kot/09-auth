@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import Footer from '@/components/Footer/Footer';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Notes App',
     description:
       'Create and manage notes easily with NoteHub — support for tags, searching, and saving drafts',
-    url: 'https://08-zustand-vert.vercel.app',
+    url: 'https://09-auth-seven.vercel.app',
     type: 'website',
     siteName: 'NoteHub',
     images: [
@@ -44,10 +45,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable}`}>
         <TanStackProvider>
-          <Header />
-          {children}
-          {modal}
-          <Footer />
+          <AuthProvider>
+            <Header />
+            {children}
+            {modal}
+            <Footer />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

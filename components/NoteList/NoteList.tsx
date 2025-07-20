@@ -3,7 +3,7 @@
 import css from "./NoteList.module.css";
 import type { Note } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteNote } from "../../lib/api";
+import { deleteNote } from "../../lib/api/clientApi";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import Link from "next/link";
@@ -15,11 +15,11 @@ interface NoteListProps {
 
 export default function NoteList({ notes }: NoteListProps) {
   const queryClient = useQueryClient();
-  const [loadingNoteId, setLoadingNoteId] = useState<number | null>(null);
+  const [loadingNoteId, setLoadingNoteId] = useState<string | null>(null);
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (id: number) => deleteNote(id),
-    onMutate: (id: number) => {
+    mutationFn: (id: string) => deleteNote(id),
+    onMutate: (id: string) => {
       setLoadingNoteId(id);
     },
     onSuccess: () => {

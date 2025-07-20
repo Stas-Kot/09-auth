@@ -1,5 +1,5 @@
 export interface Note {
-  id: number;
+  id: string;
   title: string;
   content: string;
   createdAt: string;
@@ -13,6 +13,27 @@ export interface NewNote {
   tag: Tag;
 }
 
-export type Tag = 'Work' | 'Todo' | 'Personal' | 'Meeting' | 'Shopping';
+export type Tag =
+  | 'Work'
+  | 'Todo'
+  | 'Personal'
+  | 'Meeting'
+  | 'Shopping'
+  | 'Ideas'
+  | 'Travel'
+  | 'Finance'
+  | 'Health'
+  | 'Important';
 
-export const TAGS: Tag[] = ['Work', 'Todo', 'Personal', 'Meeting', 'Shopping'];
+export const TAGS: Tag[] = [
+  'Work',
+  'Todo',
+  'Personal',
+  'Meeting',
+  'Shopping',
+  'Ideas',
+  'Travel',
+  'Finance',
+  'Health',
+  'Important',
+];

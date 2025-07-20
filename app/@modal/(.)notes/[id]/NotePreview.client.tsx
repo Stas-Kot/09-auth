@@ -3,12 +3,11 @@ import React from 'react';
 import css from './NotePreview.module.css';
 import { useParams, useRouter } from 'next/navigation';
 import Modal from '@/components/Modal/Modal';
-import { fetchNoteById } from '@/lib/api';
+import { fetchNoteById } from '@/lib/api/clientApi';
 import { useQuery } from '@tanstack/react-query';
 
 const NotePreviewClient = () => {
-  const params = useParams<{ id: string }>();
-  const id = Number(params.id);
+  const {id} = useParams<{ id: string }>();
   const router = useRouter();
   const handleClose = () => router.back();
 

@@ -6,9 +6,10 @@ import NoteList from '@/components/NoteList/NoteList';
 import { useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { fetchNotes, GetNotesRes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/clientApi';
 import { Tag } from '@/types/note';
 import Link from 'next/link';
+import { GetNotesRes } from '@/lib/api/api';
 
 interface NotesClientProps {
   initialData: GetNotesRes;

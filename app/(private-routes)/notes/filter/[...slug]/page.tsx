@@ -2,9 +2,10 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 import { Toaster } from 'react-hot-toast';
 import css from './NotesPage.module.css';
 import NotesClient from './Notes.client';
-import { fetchNotes, GetNotesRes } from '@/lib/api';
+import { GetNotesRes } from '@/lib/api/api';
 import { Tag, TAGS} from '@/types/note';
 import { Metadata } from 'next';
+import { fetchServerNotes } from '@/lib/api/serverApi';
 
 type Props = {
   params: Promise<{ slug: string[] }>;
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props):Promise<Metadata> {
     openGraph: {
       title: `Notes: ${slug}`,
       description: `Notes filtred by tag: ${slug}`,
-      url: 'https://08-zustand-vert.vercel.app',
+      url: 'https://09-auth-seven.vercel.app',
       images: [
         {
           url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
@@ -40,7 +41,7 @@ async function Notes({ params }: Props) {
   if (Array.isArray(slug) && slug.length > 0) {
     const stringTag = slug[0];
     if (stringTag === 'All') {
-      currentTag = undefined; // означает: показываем все заметки
+      currentTag = undefined;
     } else if (TAGS.includes(stringTag as Tag)) {
       currentTag = stringTag as Tag;
     } else {
@@ -58,7 +59,7 @@ async function Notes({ params }: Props) {
 
   await queryClient.prefetchQuery<GetNotesRes>({
     queryKey,
-    queryFn: () => fetchNotes(initialSearch, initialPage, initialTag),
+    queryFn: () => fetchServerNotes(initialSearch, initialPage, initialTag),
   });
 
   const initialData = queryClient.getQueryData<GetNotesRes>(queryKey);

@@ -1,9 +1,9 @@
 'use client';
 import { useId } from 'react';
 import css from './NoteForm.module.css';
-import { createNote } from '../../lib/api';
+import { createNote } from '../../lib/api/clientApi';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { NewNote, Tag } from '../../types/note';
+import { NewNote, Tag, TAGS } from '../../types/note';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
@@ -90,11 +90,11 @@ export default function NoteForm() {
           className={css.select}
           required
         >
-          <option value="Todo">Todo</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Meeting">Meeting</option>
-          <option value="Shopping">Shopping</option>
+          {TAGS.map(tag => (
+            <option key={tag} value={tag}>
+              {tag}
+            </option>
+          ))}
         </select>
       </div>
 
